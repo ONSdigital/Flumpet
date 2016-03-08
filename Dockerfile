@@ -1,0 +1,2 @@
+FROM iron/java
+EXPOSE 8080
