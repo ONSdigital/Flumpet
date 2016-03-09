@@ -7,6 +7,7 @@ import org.apache.commons.fileupload.FileItem;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
@@ -119,6 +120,7 @@ public class FtpPublisher implements Publisher {
 
                 System.out.println("ftp get file " + filename);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
+                ftp.setFileStructure(FTP.BINARY_FILE_TYPE);
                 ftp.retrieveFile(filename, out);
                 //data = out.toString();
                 data = out.toByteArray();
