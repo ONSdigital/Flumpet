@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import java.io.IOException;
 
-/**
- * List files in ftp.
- */
 @Api
 public class Get {
 
