@@ -91,9 +91,9 @@ public class FtpPublisher implements Publisher {
         return ftpInfo.build();
     }
 
-    public String get(String filename) throws IOException {
+    public byte[] get(String filename) throws IOException {
 
-        String data = "<no data>";
+        byte[] data = null;
 
         FtpInfo.FtpInfoBuilder ftpInfo = FtpInfo.builder();
 
@@ -120,7 +120,8 @@ public class FtpPublisher implements Publisher {
                 System.out.println("ftp get file " + filename);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 ftp.retrieveFile(filename, out);
-                data = out.toString();
+                //data = out.toString();
+                data = out.toByteArray();
                 System.out.println("ftp " + filename + " contents: " + data);
 
                 System.out.println("ftp logout");

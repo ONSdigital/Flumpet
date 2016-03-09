@@ -22,8 +22,12 @@ public class Stream {
         String filename = request.getParameter("filename");
         System.out.println("ftp >>>>>>>> stream filename: " + filename);
 
-        String contents = ftp.get(filename);
-        System.out.println("ftp >>>>>>>> stream filename: " + filename + " contents: " + contents);
+        byte[] contents = ftp.get(filename);
+        if (contents == null) {
+            return "problem getting file: " + filename;
+        }
+
+        System.out.println("ftp >>>>>>>> stream filename: " + filename + " content length: " + contents.length);
 
         if (filename.endsWith(".jpg")) {
             contentType = "image/jpeg";
@@ -31,9 +35,11 @@ public class Stream {
 
         System.out.println("ftp >>>>>>>> stream contentType: " + contentType);
         response.setContentType(contentType);
+        response.setContentLength(contents.length);
 
         ServletOutputStream out = response.getOutputStream();
-        out.write(contents.getBytes());
+        out.write(contents);
+        out.flush();
 
         return null;
     }

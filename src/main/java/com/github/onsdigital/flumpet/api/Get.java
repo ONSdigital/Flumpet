@@ -19,9 +19,9 @@ public class Get {
         String filename = request.getParameter("filename");
         System.out.println("ftp >>>>>>>> get filename: " + filename);
 
-        String contents = ftp.get(filename);
-        System.out.println("ftp >>>>>>>> get filename: " + filename + " contents: " + contents);
+        byte[] contents = ftp.get(filename);
+        System.out.println("ftp >>>>>>>> get filename: " + filename + " contents length: " + contents.length);
 
-        return contents;
+        return new String(contents);
     }
 }
