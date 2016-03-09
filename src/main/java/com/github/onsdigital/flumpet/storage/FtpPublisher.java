@@ -118,9 +118,9 @@ public class FtpPublisher implements Publisher {
                 ftp.changeWorkingDirectory(path);
                 System.out.println("ftp current directory is " + ftp.printWorkingDirectory());
 
-                System.out.println("ftp get file " + filename);
+                System.out.println("ftp get binary file " + filename);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
-                ftp.setFileStructure(FTP.BINARY_FILE_TYPE);
+                ftp.setFileType(FTP.BINARY_FILE_TYPE);
                 ftp.retrieveFile(filename, out);
                 //data = out.toString();
                 data = out.toByteArray();
@@ -218,7 +218,8 @@ public class FtpPublisher implements Publisher {
                 System.out.println("ftp current directory is " + ftp.printWorkingDirectory());
 
                 //store the file in the remote server
-                System.out.println("ftp storing file: " + filename);
+                System.out.println("ftp storing binary file: " + filename);
+                ftp.setFileType(FTP.BINARY_FILE_TYPE);
                 ftp.storeFile(filename, inputStream);
                 //close the stream
                 System.out.println("ftp closing stream");
